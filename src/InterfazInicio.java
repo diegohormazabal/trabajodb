@@ -1,5 +1,5 @@
 import ConexionDB.ConexionDB;
-
+//github prueba
 public class InterfazInicio extends javax.swing.JFrame {
 
     /**
