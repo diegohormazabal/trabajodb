@@ -1,13 +1,24 @@
+package Interfaz;
+
 
 import ConexionDB.ConexionDB;
 import javax.swing.JOptionPane;
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-public class InterfazBuscar extends javax.swing.JFrame {
+/**
+ *
+ * @author vassilis
+ */
+public class InterfazAgregar extends javax.swing.JFrame {
 
     ConexionDB con = new ConexionDB();
     
-    public InterfazBuscar() {
+    public InterfazAgregar() {
         initComponents();
         this.setTitle("Agenda Telefonica Inacap");
         this.setResizable(false);
@@ -25,18 +36,22 @@ public class InterfazBuscar extends javax.swing.JFrame {
     private void initComponents() {
 
         txtNombre = new javax.swing.JTextField();
+        txtNumero = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        btnBuscar2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        btnAgregar2 = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Nombre");
 
-        btnBuscar2.setText("Buscar");
-        btnBuscar2.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setText("Numero");
+
+        btnAgregar2.setText("Agregar");
+        btnAgregar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscar2ActionPerformed(evt);
+                btnAgregar2ActionPerformed(evt);
             }
         });
 
@@ -54,16 +69,22 @@ public class InterfazBuscar extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(98, Short.MAX_VALUE)
+                        .addContainerGap(80, Short.MAX_VALUE)
                         .addComponent(btnCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBuscar2))
+                        .addComponent(btnAgregar2)
+                        .addGap(94, 94, 94))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(94, 94, 94)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombre)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(92, 92, 92))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtNumero, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -72,9 +93,13 @@ public class InterfazBuscar extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuscar2)
+                    .addComponent(btnAgregar2)
                     .addComponent(btnCancelar))
                 .addGap(67, 67, 67))
         );
@@ -88,12 +113,16 @@ public class InterfazBuscar extends javax.swing.JFrame {
         IInicio.setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar2ActionPerformed
+    private void btnAgregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar2ActionPerformed
         con.Conexion();
         String nombre = txtNombre.getText();
-        con.consultar(nombre);        
-        
-    }//GEN-LAST:event_btnBuscar2ActionPerformed
+        int numero = Integer.parseInt(txtNumero.getText());
+        if(con.Insertar(nombre, numero)==1){
+        JOptionPane.showMessageDialog(null, "Se Agrego el contacto exitosamente");
+        }else{
+            JOptionPane.showMessageDialog(null, "Error Al Agregar el contacto");
+        }
+    }//GEN-LAST:event_btnAgregar2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -126,15 +155,17 @@ public class InterfazBuscar extends javax.swing.JFrame {
         /* CreatetxtNombrey the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InterfazBuscar().setVisible(true);
+                new InterfazAgregar().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscar2;
+    private javax.swing.JButton btnAgregar2;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNumero;
     // End of variables declaration//GEN-END:variables
 }

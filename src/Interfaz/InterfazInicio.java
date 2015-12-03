@@ -1,3 +1,7 @@
+package Interfaz;
+
+import Interfaz.InterfazBuscar;
+import Interfaz.InterfazAgregar;
 import ConexionDB.ConexionDB;
 //github prueba
 public class InterfazInicio extends javax.swing.JFrame {

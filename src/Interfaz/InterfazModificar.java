@@ -1,27 +1,34 @@
+package Interfaz;
 
+import Interfaz.InterfazInicio;
+import Interfaz.InterfazBuscar;
 import ConexionDB.ConexionDB;
+import ConexionDB.ConexionDB;
+import javax.swing.JOptionPane;
+import Contacto.Contacto;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author vassilis
  */
 public class InterfazModificar extends javax.swing.JFrame {
 
-    /**
-     * Creates new form NewJFrame
-     */
+    ConexionDB con = new ConexionDB();
+    Contacto cont = new Contacto();
+
     public InterfazModificar() {
         initComponents();
         this.setTitle("Agenda Telefonica Inacap");
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         ConexionDB con = new ConexionDB();
+        jTextField1.setEditable(false);
+        jTextField2.setEditable(false);
     }
 
     /**
@@ -55,6 +62,11 @@ public class InterfazModificar extends javax.swing.JFrame {
         jLabel1.setText("Nombre");
 
         btnBuscar2.setText("Buscar");
+        btnBuscar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar2ActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -64,6 +76,11 @@ public class InterfazModificar extends javax.swing.JFrame {
         });
 
         btnModificar2.setText("Modificar");
+        btnModificar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificar2ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Nuevo Nombre");
 
@@ -141,6 +158,24 @@ public class InterfazModificar extends javax.swing.JFrame {
         InterfazInicio IInicio = new InterfazInicio();
         IInicio.setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar2ActionPerformed
+
+        jTextField1.setEditable(true);
+        jTextField2.setEditable(true);
+        txtNombre.setEditable(false);
+        con.Conexion();
+        String nombre = txtNombre.getText();
+        cont = con.consultar(nombre);
+        jLabel5.setText(cont.getNumero());
+
+    }//GEN-LAST:event_btnBuscar2ActionPerformed
+
+    private void btnModificar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificar2ActionPerformed
+        
+        cont.setNombre(jTextField1.getText());
+        cont.setNumero(jTextField2.getText());
+    }//GEN-LAST:event_btnModificar2ActionPerformed
 
     /**
      * @param args the command line arguments
