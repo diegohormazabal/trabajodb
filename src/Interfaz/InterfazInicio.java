@@ -3,7 +3,9 @@ package Interfaz;
 import Interfaz.InterfazBuscar;
 import Interfaz.InterfazAgregar;
 import ConexionDB.ConexionDB;
+import java.awt.Color;
 //github prueba
+
 public class InterfazInicio extends javax.swing.JFrame {
 
     /**
@@ -111,7 +113,7 @@ public class InterfazInicio extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         this.dispose();
-        InterfazEliminar IEliminar= new InterfazEliminar();
+        InterfazEliminar IEliminar = new InterfazEliminar();
         IEliminar.setVisible(true);
     }//GEN-LAST:event_btnEliminarActionPerformed
 

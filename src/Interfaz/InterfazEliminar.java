@@ -1,6 +1,5 @@
 package Interfaz;
 
-
 import Interfaz.InterfazInicio;
 import Interfaz.InterfazBuscar;
 import ConexionDB.ConexionDB;
@@ -11,7 +10,6 @@ import Contacto.Contacto;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author vassilis
@@ -20,7 +18,7 @@ public class InterfazEliminar extends javax.swing.JFrame {
 
     ConexionDB con = new ConexionDB();
     Contacto cont = new Contacto();
-    
+
     public InterfazEliminar() {
         initComponents();
         this.setTitle("Agenda Telefonica Inacap");
@@ -70,6 +68,11 @@ public class InterfazEliminar extends javax.swing.JFrame {
         });
 
         btnEliminar2.setText("Eliminar");
+        btnEliminar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminar2ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Numero");
 
@@ -125,13 +128,22 @@ public class InterfazEliminar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar2ActionPerformed
-        
+
         con.Conexion();
         String nombre = txtNombre.getText();
         cont = con.consultar(nombre);
         jLabel5.setText(cont.getNumero());
-        
+
     }//GEN-LAST:event_btnBuscar2ActionPerformed
+
+    private void btnEliminar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminar2ActionPerformed
+
+        con.Conexion();
+        String nombre = txtNombre.getText();
+        con.Eliminar(nombre);
+
+
+    }//GEN-LAST:event_btnEliminar2ActionPerformed
 
     /**
      * @param args the command line arguments

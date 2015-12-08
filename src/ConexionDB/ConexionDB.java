@@ -55,6 +55,29 @@ public class ConexionDB {
         }
         return ret;
     }
+    
+    public void Eliminar(String nom){
+        
+        try {
+            String nombre = nom;
+            Conexion();
+            s = connection.createStatement();
+            int z = s.executeUpdate("DELETE FROM contacto WHERE nombre='" + nombre + "'");
+            
+            
+            if(z==1){
+                JOptionPane.showMessageDialog(null, "Contacto Eliminado");
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "Contacto inexistente");
+            }
+            
+        } catch (Exception e) {
+            System.out.println("Error de conexion");
+            e.printStackTrace();
+        }
+        
+    }
 
     public Contacto consultar(String n) {
 
@@ -81,6 +104,31 @@ public class ConexionDB {
 
         return cont;
 
+    }
+    
+    public void Modificar(String nomant,String nom,int num){
+        
+        try {
+            String nombreAntiguo=nomant;
+            String nombre = nom;
+            int numero = num;
+            Conexion();
+            s = connection.createStatement();
+            int z = s.executeUpdate("UPDATE contacto set nombre = '" + nombre + "', numero = '" + numero + "' WHERE nombre='" + nombreAntiguo + "'");
+            
+            
+            if(z==1){
+                JOptionPane.showMessageDialog(null, "Contacto Modificado");
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "Contacto inexistente");
+            }
+            
+        } catch (Exception e) {
+            System.out.println("Error de conexion");
+            e.printStackTrace();
+        }
+        
     }
 
 }

@@ -172,9 +172,12 @@ public class InterfazModificar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscar2ActionPerformed
 
     private void btnModificar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificar2ActionPerformed
-        
-        cont.setNombre(jTextField1.getText());
-        cont.setNumero(jTextField2.getText());
+
+        con.Conexion();
+        String nombre = jTextField1.getText();
+        int numero = Integer.parseInt(jTextField2.getText());
+        con.Modificar(cont.getNombre(),nombre, numero);
+
     }//GEN-LAST:event_btnModificar2ActionPerformed
 
     /**
