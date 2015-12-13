@@ -29,6 +29,11 @@ public class ConexionDB {
 
             if (connection != null) {
                 System.out.println("Conectando a Base de Datos...");
+            }else{
+                String createdb="CREATE DATABASE AgendaInacap";
+                 s = connection.createStatement();
+                 s.executeUpdate(createdb);
+                 Conexion();
             }
         } catch (Exception e) {
             System.out.println("Problemas de Conexión");
@@ -55,28 +60,27 @@ public class ConexionDB {
         }
         return ret;
     }
-    
-    public void Eliminar(String nom){
-        
+
+    public void Eliminar(String nom) {
+
         try {
             String nombre = nom;
             Conexion();
             s = connection.createStatement();
             int z = s.executeUpdate("DELETE FROM contacto WHERE nombre='" + nombre + "'");
-            
-            
-            if(z==1){
+
+            if (z == 1) {
                 JOptionPane.showMessageDialog(null, "Contacto Eliminado");
-                
-            }else{
+
+            } else {
                 JOptionPane.showMessageDialog(null, "Contacto inexistente");
             }
-            
+
         } catch (Exception e) {
             System.out.println("Error de conexion");
             e.printStackTrace();
         }
-        
+
     }
 
     public Contacto consultar(String n) {
@@ -91,10 +95,10 @@ public class ConexionDB {
         }
 
         try {
-            if(rs.next()==true){
-            cont = new Contacto(rs.getString(1),rs.getString(2));
-                
-            }else{
+            if (rs.next() == true) {
+                cont = new Contacto(rs.getString(1), rs.getString(2));
+
+            } else {
                 JOptionPane.showMessageDialog(null, "Contacto inexistente");
             }
 
@@ -105,30 +109,37 @@ public class ConexionDB {
         return cont;
 
     }
-    
-    public void Modificar(String nomant,String nom,int num){
-        
+
+    public void Modificar(Contacto conta, String nom, int num) {
+
         try {
-            String nombreAntiguo=nomant;
-            String nombre = nom;
+            cont = conta;
+            String nombre = nom,asd="";
             int numero = num;
+
+            if (nombre.compareTo(asd)==0) {
+                nombre = cont.getNombre();
+            }
+            if (numero == 0) {
+                numero = Integer.parseInt(cont.getNumero());
+            }
+
             Conexion();
             s = connection.createStatement();
-            int z = s.executeUpdate("UPDATE contacto set nombre = '" + nombre + "', numero = '" + numero + "' WHERE nombre='" + nombreAntiguo + "'");
-            
-            
-            if(z==1){
+            int z = s.executeUpdate("UPDATE contacto set nombre = '" + nombre + "', numero = '" + numero + "' WHERE nombre='" + conta.getNombre() + "'");
+
+            if (z == 1) {
                 JOptionPane.showMessageDialog(null, "Contacto Modificado");
-                
-            }else{
+
+            } else {
                 JOptionPane.showMessageDialog(null, "Contacto inexistente");
             }
-            
+
         } catch (Exception e) {
             System.out.println("Error de conexion");
             e.printStackTrace();
         }
-        
+
     }
 
 }
