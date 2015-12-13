@@ -114,7 +114,7 @@ public class InterfazAgregar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAgregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar2ActionPerformed
-        con.Conexion();
+        //con.Conexion();
         String nombre = txtNombre.getText();
         int numero = Integer.parseInt(txtNumero.getText());
         if(con.Insertar(nombre, numero)==1){
