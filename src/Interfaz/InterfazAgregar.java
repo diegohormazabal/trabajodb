@@ -44,6 +44,12 @@ public class InterfazAgregar extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        txtNumero.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroKeyTyped(evt);
+            }
+        });
+
         jLabel1.setText("Nombre");
 
         jLabel2.setText("Numero");
@@ -123,6 +129,15 @@ public class InterfazAgregar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error Al Agregar el contacto");
         }
     }//GEN-LAST:event_btnAgregar2ActionPerformed
+
+    private void txtNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroKeyTyped
+        
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
+        
+    }//GEN-LAST:event_txtNumeroKeyTyped
 
     /**
      * @param args the command line arguments

@@ -1,9 +1,6 @@
 package ConexionDB;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import javax.swing.JOptionPane;
 import Contacto.Contacto;
 
@@ -33,6 +30,34 @@ public class ConexionDB {
         } catch (Exception e) {
             System.out.println("Problemas de Conexión");
         }
+    }
+
+    public String mostrarTodo() {
+
+        try {
+
+            Conexion();
+            s = connection.createStatement();
+
+            rs = s.executeQuery("SELECT nombre,numero FROM contacto");
+
+        } catch (Exception e) {
+            System.out.println("Problema Buscando La Base de Datos");
+
+        }
+        String string = "";
+        try {
+            while (rs.next()) {
+
+                string += rs.getString(1) + rs.getString(2) + "\n";
+
+            }
+        } catch (Exception e) {
+            System.out.println("Problema al imprimir la información.");
+        }
+
+        return string;
+
     }
 
     public int Insertar(String nom, int num) {
@@ -109,10 +134,10 @@ public class ConexionDB {
 
         try {
             cont = conta;
-            String nombre = nom,asd="";
+            String nombre = nom, asd = "";
             int numero = num;
 
-            if (nombre.compareTo(asd)==0) {
+            if (nombre.compareTo(asd) == 0) {
                 nombre = cont.getNombre();
             }
             if (numero == 0) {

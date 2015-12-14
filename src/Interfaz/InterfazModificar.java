@@ -86,6 +86,12 @@ public class InterfazModificar extends javax.swing.JFrame {
 
         jLabel4.setText("Nuevo Numero");
 
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
+
         jLabel5.setText("Numero");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -176,14 +182,21 @@ public class InterfazModificar extends javax.swing.JFrame {
         con.Conexion();
         int numero;
         String nombre = jTextField1.getText();
-        if(jTextField2.getText().length()==0){  
-        numero = 0;
-         }else{
-            numero=Integer.parseInt(jTextField2.getText());
+        if (jTextField2.getText().length() == 0) {
+            numero = 0;
+        } else {
+            numero = Integer.parseInt(jTextField2.getText());
         }
-        con.Modificar(cont,nombre, numero);
+        con.Modificar(cont, nombre, numero);
 
     }//GEN-LAST:event_btnModificar2ActionPerformed
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField2KeyTyped
 
     /**
      * @param args the command line arguments
